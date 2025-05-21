@@ -45,7 +45,13 @@ export class AppComponent implements OnInit {
   closeMenu() {
     this.isMenuOpen = false; // Ensure menu is hidden
   }
+  navigateToproductfetch(): void {
+    this.closeMenu();
+    this.showLoading();
+    this.router.navigate(['/products']).finally(() => this.hideLoading());
   
+    
+  }
   navigateTohome(): void {
     this.closeMenu(); // Close the menu
    

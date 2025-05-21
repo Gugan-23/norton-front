@@ -22,4 +22,7 @@ export class DashboardComponent {
   navigateTocontactus(): void {
     this.router.navigate(['/Contact']); // Navigate to the dashboard route
   }
+  navigateToproductfetch(): void {
+    this.router.navigate(['/product']); // Navigate to the dashboard route
+  }
 }

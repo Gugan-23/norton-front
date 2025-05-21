@@ -1,0 +1,14 @@
+<p>productsfetch works!</p>
+<div *ngFor="let product of products" style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+    <h3>{{ product.name }}</h3>
+    <p><strong>Category:</strong> {{ product.category }}</p>
+    <p><strong>Specification:</strong> {{ product.specification }}</p>
+  
+    <div *ngIf="product.images && product.images.length">
+      <div *ngFor="let img of product.images">
+        <img [src]="img" alt="Product Image" style="width: 100px; height: auto; margin: 5px;">
+      </div>
+    </div>
+  
+  </div>
+  

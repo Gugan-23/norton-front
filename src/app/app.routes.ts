@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import {EventDetailsComponent} from './event-details/event-details.component';
 import {ContactComponent} from './contact/contact.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+
+import { ProductsfetchComponent } from './productsfetch/productsfetch.component';
+
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'Events', component: EventsComponent },
@@ -15,6 +18,8 @@ export const routes: Routes = [
   { path: 'user-detail/:id', component: UserDetailComponent } ,
   {path :'event/:id',component :EventDetailsComponent},
   { path: 'event-details/:id', component: EventDetailsComponent },
+  
+  { path: 'products', component: ProductsfetchComponent },
   {path :'Contactus',component : ContactComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect to login by default
 ];
