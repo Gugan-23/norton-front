@@ -16,11 +16,34 @@
       <ul [ngClass]="{'open': isMenuOpen}" class="nav-list">
         <li><b><a (click)="navigateTohome()" fragment="home">Home</a></b></li>
         <li><b><a (click)="navigateToaboutus()">About Us</a></b></li>
+        <li class="dropdown" (mouseenter)="fetchCategories()" (mouseleave)="hideDropdown()">
+          <b><a fragment="c">Product</a></b>
+        
+          <ul *ngIf="showDropdown" class="dropdown-menu">
+            <li *ngFor="let cat of categories" (mouseenter)="fetchProductsByCategory(cat)">
+              <strong>{{ cat }}</strong>
+        
+              <ul *ngIf="activeCategory === cat && productsByCategory[cat]">
+                <li *ngFor="let prod of productsByCategory[cat]" (click)="onProductClick(prod)">
+                  {{ prod.name }}
+                </li>
+              </ul>
+              
+            </li>
+          </ul>
+        </li>
+        
+        
+        
         <li><b><a (click)="navigateToevents()" fragment="events">Events</a></b></li>
         <li><b><a (click)="navigateTocontact()" fragment="team">Team</a></b></li>
         <li><b><a (click)="navigateTocontactus()" fragment="contact-us">Contact Us</a></b></li>
         
-        <li><b><a (click)="navigateToproductfetch()" fragment="c">Product</a></b></li>
+        
+        
+        
+        
+        <li><b><a (click)="navigateTocarrer()" fragment="p1">Carrer</a></b></li>
         
       </ul>
     </nav>

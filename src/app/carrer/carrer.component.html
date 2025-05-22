@@ -1,0 +1,30 @@
+<form [formGroup]="careerForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <label>Email:</label>
+    <input type="email" formControlName="email" required /><br><br>
+  
+    <label>Username:</label>
+    <input type="text" formControlName="username" required /><br><br>
+  
+    <label>Phone:</label>
+    <input type="text" formControlName="phone" required /><br><br>
+  
+    <label>City:</label>
+    <input type="text" formControlName="city" required /><br><br>
+  
+    <label>State:</label>
+    <input type="text" formControlName="state" required /><br><br>
+  
+    <label>Upload Resume (PDF/Image):</label>
+    <input type="file" (change)="onFileChange($event)" /><br><br>
+  
+    <button type="submit">Submit</button>
+  </form>
+  
+  <div *ngIf="submitSuccess" style="color: green;">
+    Career form submitted successfully!
+  </div>
+  
+  <div *ngIf="submitError" style="color: red;">
+    {{ submitError }}
+  </div>
+  
