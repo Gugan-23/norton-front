@@ -21,93 +21,144 @@
 <!-- Hero Section -->
 <div *ngIf="!loading">
 
-<div class="hero-section">
-  <div class="hero-content">
-    <h1> Datalytics <br>The Exploratory Territory</h1>
-    <p>Join us in exploring the world of data analytics. Learn, grow, and contribute to the future of data.</p>
-    <a href="javascript:void(0)" class="btn btn-primary" (click)="navigateToaboutus()">Explore More</a>
-    <a href="javascript:void(0)" class="btn btn-secondary" (click)="navigateTocontactus()">Get in Touch</a>
-  </div>
-</div>
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-line"></div>
+      <h1>Reliable. Efficient. Future-Ready.</h1>
+      <p>Find out why we’re a global leader in water pump systems and smart fluid solutions.</p>
+      <div class="tags">
+        Smart Pumping Solutions | IoT Monitoring Systems | Manuals & More
+      </div>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary">Contact Us</a>
+        <a href="#" class="btn-secondary">Why AquaFlow</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="home.png" alt="Uploaded Image">
+
+      
+    </div>
+  </section>
 
 <!-- About Us Section -->
 
 <div id="about-us" class="about-us-section">
   <div class="about-us-content">
     <div class="about-us-image">
-      <img src="frontabout.jpg" alt="Data Analytics">
+        <img [src]="uploadedImageUrl" alt="Uploaded Image" style="max-width: 100%; border-radius: 8px;">
+      
     </div>
     <div class="about-us-text">
-      <div class="about-label">ABOUT DATALYTICS</div>
-      <h2>A Few Words About Us</h2>
-      <p>Datalytics is a registered club of Coimbatore Institute of Technology, initiated for enlightening the knowledge of students in the field of data science. Our aim is to provide you:</p>
-      <ul>
-        <li>Quality research & analysis</li>
-        <li>Business advisory experience</li>
-        <li>Realtime experience with data.</li>
-      </ul>
+      <div class="about-label">ABOUT US</div>
+      <div>
+      <p>
+        Norton Industries, established in 1980 and headquartered in Ondipudur, Coimbatore, is a prominent Indian manufacturer and exporter specializing in pumps, motors, and control panels. Founded by engineering graduate Mr. N. Subramanian, the company initially focused on producing pumps for agricultural and domestic applications, as well as motors for industrial use. Over the years, Norton Industries has expanded its operations to include a cast iron foundry, Norton Ferro Castings, and a plastics division, Clear Plast, which manufactures PET preforms, bottles, and jars.
+      </p>
+    </div>
       <a href="https://www.cit.edu.in/club/datalytics-club" class="btn-read-more">Read more</a>
     </div>
   </div>
 </div>
-<div id="events" class="events-section">
-  <h1>Upcoming Events</h1>
-  <div class="event-cards">
-    <div class="event-card" *ngFor="let event of filteredEvents | slice: 0:2" (click)="viewEventDetails(event._id)">
-      <div *ngIf="event.image_url">
-        <img [src]="event.image_url" alt="{{ event.event_name }}" class="event-image" />
-      </div>
-      <div class="event-info">
-        <h3>{{ event.event_name }}</h3>
-          </div>
-    </div>
-  </div>
-  <a href="javascript:void(0)" class="btn btn-secondary" (click)="goToEventsPage()">Explore All Events</a>
-</div>
+
 
 <!-- What We Do Section -->
 <div id="what-we-do" class="what-we-do-section">
-  <h2>What are the skills we need?</h2>
-  <div class="skills-label">DATA SCIENCE</div>
+  <h2>What Skills Do We Value?</h2>
+  <div class="skills-label">ENGINEERING & MANUFACTURING</div>
   <div class="what-we-do-cards">
-    
+
     <div class="what-we-do-card">
-      <img src="https://images.unsplash.com/photo-1666875753105-c63a6f3bdc86?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZGF0YSUyMGFuYWx5c2lzfGVufDB8fDB8fHww" alt="Data Visualization">
-      <h3>Data Visualization</h3>
-      <p>Graphical representation of information and data.</p>
+      <img src="get.jpg" alt="Mechanical Design">
+      <h3>Mechanical Design</h3>
+      <p>Expertise in designing pump components and systems using CAD tools.</p>
     </div>
+
     <div class="what-we-do-card">
-      <img src="https://media.istockphoto.com/id/1312471020/photo/financial-paper-with-charts-and-diagrams-on-gray-table.jpg?s=612x612&w=0&k=20&c=-am_W8-QAkWfcHFKZv-Eoff7Nuyu2Mdr4wS8-G7nobk=" alt="Data Intuition">
-      <h3>Data Intuition</h3>
-      <p>Better understanding of data.</p>
+      <img src="sc.jpg" alt="Manufacturing">
+      <h3>Manufacturing</h3>
+      <p>Hands-on skills in fabrication, CNC operations, and assembly of pumps.</p>
     </div>
+
     <div class="what-we-do-card">
-      <img src="https://media.istockphoto.com/id/1454372869/vector/data-analysis-chart-graph-3d-statistics-background.jpg?s=612x612&w=0&k=20&c=n2Vz6dpQ4EUwJwOhkX2YjMWX_dx2x_ZjPsERnejS1Jc=" alt="Data Wrangling">
-      <h3>Data Wrangling</h3>
-      <p>Process of transforming and mapping data.</p>
+      <img src="1234.jpg" alt="Quality Control">
+      <h3>Quality Control</h3>
+      <p>Inspection and testing expertise to ensure product reliability and standards.</p>
     </div>
+
     <div class="what-we-do-card">
-      <img src="https://media.istockphoto.com/id/1485774126/photo/3d-minimal-calculator-with-a-statistic-graph-paper-data-analysis-concept-3d-illustration.jpg?s=612x612&w=0&k=20&c=fdBHrAgj7PnCklJqSBCj1c2316Y6mMYoi9UgBUJTHfM=" alt="Statistics">
-      <h3>Statistics</h3>
-      <p>Dealing with collection, analysis, and interpretation of numerical data.</p>
+      <img src="pump.jpg" alt="Technical Support">
+      <h3>Technical Support</h3>
+      <p>Providing after-sales service, troubleshooting, and product guidance.</p>
     </div>
+
     <div class="what-we-do-card">
-      <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1hY2hpbmUlMjBsZWFybmluZ3xlbnwwfHwwfHx8MA%3D%3D" alt="Machine Learning">
-      <h3>Machine Learning</h3>
-      <p>An application of AI that learns and improves from experience.</p>
+      <img src="2.jpg" alt="Product Innovation">
+      <h3>Product Innovation</h3>
+      <p>Developing efficient, eco-friendly, and high-performance pumping solutions.</p>
     </div>
+
     <div class="what-we-do-card">
-      <img src="https://images.unsplash.com/photo-1580894906475-403276d3942d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c29mdHdhcmUlMjBlbmdpbmVlcmluZ3xlbnwwfHwwfHx8MA%3D%3D" alt="Software Engineering">
-      <h3>Software Engineering</h3>
-      <p>Design, development, and maintenance of software.</p>
+      <img src="images.jpg" alt="Electrical Integration">
+      <h3>Electrical Integration</h3>
+      <p>Understanding of motor systems, wiring, and electrical controls for pumps.</p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Events Section -->
+<div class="info-panel">
+  <div class="info-left">
+    <div class="tag-line">EXCELLENCE</div>
+    <h1 class="panel-heading">We are dedicated to crafting innovation</h1>
+    <p class="panel-description">
+      Our mission is to design and deliver smart solutions that meet global standards. By combining efficiency, sustainability, and precision, we ensure that our customers receive nothing but the best in class products. Our teams constantly innovate to create value and growth opportunities within every sector we serve.
+    </p>
+    <a href="#" class="learn-more-button">Learn More »</a>
+  </div>
+
+  <div class="info-right">
+    <div class="info-item">
+      <div class="icon-box">✅</div>
+      <div>
+        <h3>Reliable Output</h3>
+        <p>We guarantee dependable and consistent performance in every product we build.</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="icon-box">⚙️</div>
+      <div>
+        <h3>Advanced Systems</h3>
+        <p>Our facilities are equipped with next-gen technology for optimized production.</p>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="icon-box">📊</div>
+      <div>
+        <h3>Global Standards</h3>
+        <p>We align our processes with international compliance and quality frameworks.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Events Section -->
+<div class="customer">
+    <div class="hero-text" style="flex: 1;">
+      <h1>About Our Customer</h1>
+      <p>At Surya Pumps, Coimbatore, we place immense value on every customer visit—not just as a meeting, but as a meaningful interaction that strengthens our commitment to excellence. When customers walk through our doors, they’re welcomed not as outsiders, but as partners. Each visit is tailored to help them understand our processes, inspect our products, and get a firsthand look at the quality and integrity that define our work.
 
+Our team takes the time to walk customers through each stage of manufacturing, quality control, and logistics, addressing every question with transparency and genuine care. Whether it’s a first-time visitor or a long-standing client, we ensure their experience is both informative and personalized. These visits often go beyond business—they’re about trust-building, sharing ideas, and aligning our goals for long-term collaboration.
+        
+      </p>
+    </div>
+    <div class="hero-image" style="flex: 1;">
+      <img [src]="imgcustomer" alt="customer" style="max-width: 100%; border-radius: 8px;">
+    </div>
+ 
 
-
+</div>
 <!-- Team Section -->
 <div id="team" class="team-section">
   <h2>Meet Our Team</h2>
@@ -145,10 +196,10 @@
 <div id="contact-us" class="contact-us-section">
   <h2>Contact Us</h2>
   <p>
-    Email: <a href="datalyticscit&#64;gmail.com">datalyticscit&#64;gmail.com</a> | 
-    Phone: <a href="tel:+91 8610098083">+91 8610098083</a> | 
-    LinkedIn: <a href="https://www.linkedin.com/company/datalyticscit/?originalSubdomain=in" target="_blank">Datalytics CIT</a> | 
-    Instagram: <a href="https://www.instagram.com/datalytics.cit/" target="_blank">&#64;datalytics.cit</a>
+    Email: <a href="contact&#64;nortongroup.co.in">contact&#64;nortongroup.co.in</a> | 
+    Phone: <a href="tel:+91 9894699933">+91 9894699933</a> | 
+    LinkedIn: <a href="https://www.linkedin.com/company/the-norton-group-1969?originalSubdomain=ie" target="_blank">Norton Group</a> | 
+    Instagram: <a href="https://www.instagram.com/norton_group/" target="_blank">&#64;norton_group</a>
   </p>
 </div>
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient ,HttpClientModule} from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-viewproduct',
@@ -27,7 +28,16 @@ export class ViewproductComponent implements OnInit {
       this.loading = false;
     }
   }
-
+  
+@ViewChild('carouselContainer') carousel!: ElementRef;
+  scrollCarousel(direction: 'left' | 'right') {
+    const container = this.carousel.nativeElement;
+    const scrollAmount = 250; // Adjust scroll distance per click
+    container.scrollBy({
+      left: direction === 'right' ? scrollAmount : -scrollAmount,
+      behavior: 'smooth'
+    });
+  }
   fetchProductDetails(id: string): void {
     this.http.get<any>(`http://localhost:5000/products/${id}`).subscribe({
       next: (data) => {

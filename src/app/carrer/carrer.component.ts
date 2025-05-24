@@ -34,6 +34,7 @@ export class CarrerComponent {
       this.resumeFile = file;
     }
   }
+  isLoading = false;
 
   onSubmit(): void {
     if (this.careerForm.invalid || !this.resumeFile) {

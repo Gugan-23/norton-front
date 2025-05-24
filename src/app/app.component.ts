@@ -116,13 +116,7 @@ onProductClick(product: any): void {
     this.router.navigate(['/']).finally(() => this.hideLoading());
   }
 
-  navigateToevents(): void {
-    this.closeMenu();
-    this.showLoading();
-     // Close the menu
-   
-    this.router.navigate(['/Events']).finally(() => this.hideLoading());
-  }
+  
 
   navigateToaboutus(): void {
     this.closeMenu(); // Close the menu

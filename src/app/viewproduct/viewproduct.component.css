@@ -1,7 +1,164 @@
-.product-images img {
-    max-width: 150px;
-    margin-right: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-  }
-  
+/* Base container */
+.product-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 24px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+.product-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #333;
+}
+
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.product-header h2 {
+  font-size: 26px;
+  margin-bottom: 8px;
+  color: #0f1111;
+}
+
+.product-header p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Description */
+.product-description {
+  margin-top: 20px;
+}
+
+.product-description h3 {
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+/* Carousel */
+.product-image-carousel {
+  margin-top: 20px;
+}
+
+.product-image-carousel h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-behavior: smooth;
+}
+
+.carousel img {
+  height: 220px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f7f7f7;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.carousel img:hover {
+  transform: scale(1.05);
+}
+
+/* Specifications Table */
+.product-specs {
+  margin-top: 30px;
+}
+
+.product-specs h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.product-specs table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.product-specs th, .product-specs td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.product-specs th {
+  background-color: #f3f3f3;
+  font-weight: bold;
+}
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  scroll-snap-type: x mandatory;
+}
+
+.carousel img {
+  scroll-snap-align: start;
+  flex: 0 0 auto;
+  height: 220px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f7f7f7;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.carousel img:hover {
+  transform: scale(1.05);
+}
+
+.carousel-btn {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: white;
+  font-size: 22px;
+  padding: 8px 12px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.3s ease;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.carousel-btn.left {
+  position: absolute;
+  left: 0;
+}
+
+.carousel-btn.right {
+  position: absolute;
+  right: 0;
+}

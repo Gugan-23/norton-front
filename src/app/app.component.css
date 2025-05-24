@@ -1,4 +1,95 @@
-/* Right-Aligned Button */
+/* Base Styling */
+.ni-component {
+  font-family: Arial, sans-serif;
+}
+
+
+/* Top Bar */
+.ni-top-bar {
+  background-color: #333;
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+.ni-top-bar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Left Side */
+.ni-top-bar-left span {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ni-top-bar-left i {
+  margin-right: 6px;
+  color: #ffcc00;
+}
+
+/* Right Side */
+.ni-top-bar-right {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ni-top-bar-right a {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+  font-size: 14px;
+}
+
+.ni-top-bar-right a i {
+  margin-right: 5px;
+  color: #ffcc00;
+}
+
+.ni-top-bar-right a:hover {
+  color: #ffcc00;
+}
+
+/* ========================== */
+/* Mobile View (<= 768px) */
+/* ========================== */
+@media (max-width: 768px) {
+  .ni-top-bar-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .ni-top-bar-left,
+  .ni-top-bar-right {
+    width: 100%;
+  }
+
+  .ni-top-bar-left span,
+  .ni-top-bar-right a {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 5px 0;
+  }
+
+  .ni-top-bar-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+
 .header .cta-button {
   margin-left: auto; /* Pushes the button to the far right */
   background-color: #808080; /* Changed to grey */
@@ -55,9 +146,134 @@
 }
 
 .dropdown-menu ul li:hover {
-  color: #007BFF;
+  color: #ffffff;
+}
+.ni-nav-item {
+  position: relative;
+  list-style: none;
 }
 
+.ni-nav-item > a {
+  display: block;
+  padding: 10px 15px;
+  background-color: #ffffff; /* Amazon dark nav color */
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ni-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ddd;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+}
+
+.ni-dropdown-item {
+  position: relative;
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #111;
+  white-space: nowrap;
+}
+
+.ni-dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.ni-dropdown-submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+}
+
+.ni-dropdown-subitem {
+  padding: 10px 15px;
+  color: #333;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ni-dropdown-subitem:hover {
+  background-color: #f7f7f7;
+}
+
+/* Reset list styles */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  white-space: nowrap; /* Prevent text from wrapping */
+  
+}
+/* Top level navigation */
+.ni-nav-item {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.ni-nav-item > a {
+  display: block;
+  color: white;
+  padding: 14px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 1px solid #444;
+}
+
+/* Dropdown category list */
+.ni-dropdown-menu {
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Category item */
+.ni-dropdown-item {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Category title */
+.category-title {
+  padding: 12px 18px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Submenu for products */
+.ni-dropdown-submenu {
+  background-color: #f0f0f0;
+  padding-left: 20px;
+}
+
+/* Product item under category */
+.ni-dropdown-subitem {
+  padding: 10px 18px;
+  color: #555;
+  cursor: pointer;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.ni-dropdown-subitem:hover {
+  background-color: #e2e2e2;
+}
 
 .header .cta-button:hover {
   background-color: #696969; /* Darker grey on hover */
@@ -839,4 +1055,7 @@ a:hover {
     width: 91%; /* Reduce width to 80% for laptops */
     margin: 0 auto; /* Center the footer horizontally */
   }
+}
+* {
+  box-shadow: none !important;
 }

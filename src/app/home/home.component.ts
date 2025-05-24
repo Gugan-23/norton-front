@@ -55,9 +55,13 @@ export class HomeComponent implements OnInit {
   team: User[] = [];  // UserRoles data for displaying as team members
   //errorMessage: string | null = null;
   // Array to store fetched events
+  uploadedImageUrl: string = 'about.jpg'
+    
   filteredEvents: any[] = []; // Array to store filtered events
   selectedEvent: any = null; // Store the currently selected event for editing
   yearRanges: string[] = [];
+  imgcustomer:string ='https://res.cloudinary.com/do7fzq9c6/image/upload/v1747915367/bxyh37ar1dqhj6zpzvm0.png'
+ 
   selectedYearRange: string = '';
   recentYearRange: string = '';
   users: User[] = [];
@@ -86,10 +90,8 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.loading = false; // Set loading to false after initialization
     }, 5000);
-    
-    this.fetchEvents();  // Fetch events when the component is initialized
+     // Fetch events when the component is initialized
     this.fetchTeam(); 
-    this.fetchEvents();  
     this.startAutomaticSlide();  // Fetch userRoles when the component is initialized
   }
 cardWidth: number = 15;
@@ -246,38 +248,6 @@ viewEventDetails(eventId: string): void {
 }
 
 
-
-  fetchEvents(): void {
-    this.http.get<{ events: any[] }>('http://localhost:5000/api/events')
-      .subscribe(
-        (response) => {
-          console.log('Fetched events :', response.events); // Log the fetched events
-          this.events = response.events
-            .map(event => ({
-              _id: event._id,
-              event_name: event.event_name,
-              description: event.description,
-              event_time: event.event_time,
-              event_location: event.event_location,
-              image_url: event.image_url
-            }))
-            .sort((a, b) => new Date(b.event_time).getTime() - new Date(a.event_time).getTime());
-
-          this.eventsLoaded = true; // Mark events as loaded
-
-          // Extract years from events and store in years array
-          this.years = [...new Set(this.events.map(event => new Date(event.event_time).getFullYear()))];
-          
-          // Show all events initially
-          this.filteredEvents = [...this.events];
-        },
-        (error) => {
-          console.error('Error fetching events:', error);
-          this.errorMessage = 'Failed to load events. Please try again later.';
-          this.eventsLoaded = true; // Mark events as loaded even if there's an error
-        }
-      );
-  }
   trackByEventId(index: number, event: any): string {
     return event._id; // Use '_id' as the unique identifier for tracking
   }

@@ -1,29 +1,52 @@
-<p>viewproduct works!</p>
-<div *ngIf="loading">Loading product details...</div>
+<p class="product-title">viewproduct works!</p>
+<div *ngIf="loading" class="loading">Loading product details...</div>
 
 <div *ngIf="error" class="error">{{ error }}</div>
 
-<div *ngIf="product">
-  <h2>{{ product.name }}</h2>
-  <p><strong>ID:</strong> {{ product._id }}</p>
-  <p><strong>Category:</strong> {{ product.category }}</p>
-  <p><strong>Description:</strong> {{ product.description }}</p>
-
-  <!-- Images -->
-  <div *ngIf="product.images && product.images.length > 0">
-    <h3>Images</h3>
-    <div class="product-images">
-      <img *ngFor="let imgUrl of product.images" [src]="imgUrl" alt="{{product.name}}" />
-    </div>
+<div *ngIf="product" class="product-container">
+  <div class="product-header">
+    <h2>{{ product.name }}</h2>
+    <p><strong>ID:</strong> {{ product._id }}</p>
+    <p><strong>Category:</strong> {{ product.category }}</p>
   </div>
 
-  <!-- Specifications -->
-  <div *ngIf="product.specifications && product.specifications.length > 0">
+  <!-- Image Carousel -->
+  <div class="product-image-carousel">
+    <h3>Images</h3>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn left" (click)="scrollCarousel('left')">&#8249;</button>
+  
+      <div class="carousel" #carouselContainer>
+        <img *ngFor="let imgUrl of product.images" [src]="imgUrl" alt="{{product.name}}" />
+      </div>
+  
+      <button class="carousel-btn right" (click)="scrollCarousel('right')">&#8250;</button>
+    </div>
+  </div>
+  
+
+  <!-- Description -->
+  <div class="product-description">
+    <h3>Description</h3>
+    <p>{{ product.description }}</p>
+  </div>
+
+  <!-- Specifications Table -->
+  <div *ngIf="product.specifications && product.specifications.length > 0" class="product-specs">
     <h3>Specifications</h3>
-    <ul>
-      <li *ngFor="let spec of product.specifications">
-        <strong>{{ spec.type }}:</strong> {{ spec.detail }}
-      </li>
-    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let spec of product.specifications">
+          <td>{{ spec.type }}</td>
+          <td>{{ spec.detail }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

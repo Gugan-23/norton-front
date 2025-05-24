@@ -42,7 +42,7 @@ loading: boolean = true; // Set this to true/false based on your application's l
   ngOnInit(): void {
     setTimeout(() => {
       this.loading = false; // Set loading to false after initialization
-    }, 5000);
+    }, 3000);
     this.fetchUsers(); 
     this.fetchEvents();
     
