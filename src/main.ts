@@ -3,8 +3,13 @@ import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes'; // Adjust path as needed
 
+import { provideHttpClient } from '@angular/common/http';
+
+
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(routes)
+    provideRouter(routes), 
+    provideHttpClient()
+
   ]
 });

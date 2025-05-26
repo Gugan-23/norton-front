@@ -41,82 +41,28 @@ loading: boolean = true; // Set this to true/false based on your application's l
   
   ngOnInit(): void {
     setTimeout(() => {
-      this.loading = false; // Set loading to false after initialization
-    }, 3000);
-    this.fetchUsers(); 
-    this.fetchEvents();
+      this.loading = false; 
+    }, 2000);
     
-    this.fetchImageUrls();// Fetch users when the component initializes
+    this.fetchImageUrls();
   }
   get totalEvents(): number {
     return this.events.length;
   }
-  fetchEvents(): void {
-    this.http.get<{ events: any[] }>('http://localhost:5000/api/events')
-      .subscribe(
-        (response) => {
-          console.log('Fetched events :', response.events); // Log the fetched events
-          this.events = response.events
-            .map(event => ({
-              _id: event._id,
-              event_name: event.event_name,
-              description: event.description,
-              event_time: event.event_time,
-              event_speaker:event.event_speaker,
-              event_location: event.event_location,
-              image_url: event.image_url
-            }))
-            .sort((a, b) => new Date(b.event_time).getTime() - new Date(a.event_time).getTime());
-
-          this.eventsLoaded = true; // Mark events as loaded
-
-          // Extract years from events and store in years array
-          this.years = [...new Set(this.events.map(event => new Date(event.event_time).getFullYear()))];
-          
-          // Show all events initially
-          this.filteredEvents = [...this.events];
-        },
-        (error) => {
-          console.error('Error fetching events:', error);
-          this.errorMessage = 'Failed to load events. Please try again later.';
-          this.eventsLoaded = true; // Mark events as loaded even if there's an error
-        }
-      );
-  }
-  fetchUsers(): void {
-    const apiUrl = 'http://localhost:5000/api/users'; // Replace with your actual API URL
-
-    this.http.get<{ message: string; users: User[] }>(apiUrl).subscribe({
-      next: (data) => {
-        this.users = data.users; // Assign the fetched user data to the users array
-        this.errorMessage = undefined; // Clear any previous error message
-      },
-      error: (error) => {
-        this.errorMessage = 'Failed to fetch users'; // Set error message on failure
-        console.error('Error fetching users:', error); // Log the error for debugging
-      }
-    });
-  }
-  
-  
- // Inject HttpClient and Router
   navigateToDashboard(): void {
-    this.router.navigate(['/Dashboard']); // Navigate to the dashboard route
+    this.router.navigate(['/Dashboard']);
   }
   
   async refreshAndFetchImages(): Promise<void> {
     try {
       console.log('Refreshing image data...');
       console.log('Image data refreshed');
-
-      // Now fetch the updated image URLs
       await this.fetchImageUrls();
     } catch (error) {
       console.error('Error refreshing and fetching images:', error);
     }
   }
 
-  // Fetch image URLs from the backend
   async fetchImageUrls(): Promise<void> {
     try {
       console.log('Fetching images from backend...');
@@ -125,18 +71,14 @@ loading: boolean = true; // Set this to true/false based on your application's l
     }
   }
 
-  
-  // Optional: A method to handle errors gracefully
   private handleError(error: any): void {
-    // Log the error
     console.error('An error occurred:', error);
   
-    // Provide user feedback if necessary
     alert('Failed to load images. Please try again later.');
   }
   
 moveGallery(direction: string): void {
-  const galleryWidth = 320;  // Width of one image + margin
+  const galleryWidth = 320;
   const totalImages = this.imageUrls.length;
 
   if (direction === 'left' && this.currentPosition > 0) {
@@ -145,7 +87,7 @@ moveGallery(direction: string): void {
     this.currentPosition++;
   }
 
-  const offset = -this.currentPosition * galleryWidth;  // Calculate the offset for scroll
+  const offset = -this.currentPosition * galleryWidth;  
   const galleryWrapper = document.querySelector('.gallery-wrapper') as HTMLElement;
   galleryWrapper.style.transform = `translateX(${offset}px)`;
 }

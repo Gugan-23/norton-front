@@ -23,7 +23,7 @@ export class UserDetailComponent implements OnInit {
     // Get the user ID from the URL parameters
     setTimeout(() => {
       this.loading = false; // Set loading to false after initialization
-    }, 5000);
+    }, 2000);
     this.userId = this.route.snapshot.paramMap.get('id');
     console.log('User ID:', this.userId);
 

@@ -14,8 +14,7 @@ export class ContactComponent {
   contactForm: FormGroup;
   statusMessage: string = '';
   isLoading: boolean = false;  
-  // Track the loading state
-  // Declare statusMessage
+
 
   constructor(private http: HttpClient) {
     this.contactForm = new FormGroup({
@@ -31,12 +30,13 @@ export class ContactComponent {
         .subscribe(
           (response) => {
             console.log('Success Response:', response);
-            this.statusMessage = 'Email sent successfully!';
-            this.contactForm.reset();  // Clear the form fields
+            this.contactForm.reset(); 
+            window.alert('Email sent successfully!'); 
           },
           (error) => {
             console.error('Error Response:', error);
-            this.statusMessage = `Failed to send email. Error: ${error.message || error}`;
+            window.alert(`Failed to send email. Error: ${error.message || error}`); 
+            
           }
         );
     } else {

@@ -57,10 +57,12 @@ export class CarrerComponent {
         console.log('Career form submitted:', res);
         this.careerForm.reset();
         this.resumeFile = null;
+        window.alert('Career form submitted successfully!'); 
       },
       error: (err) => {
         this.submitSuccess = false;
         this.submitError = err.error?.message || 'Submission failed';
+        window.alert('Not submitted'); 
       }
     });
   }

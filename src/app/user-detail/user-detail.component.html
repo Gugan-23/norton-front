@@ -21,11 +21,10 @@
 
 <div *ngIf="userDetails" class="user-details">
   
-  <h2>Member Details</h2>
   <img [src]="userDetails.image_url" alt="User Image" width="150" />
 
   <div class="user-info">
-
+  
     <p>
       <strong>Name:</strong> {{ userDetails.name }}
     </p>

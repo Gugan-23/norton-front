@@ -99,6 +99,8 @@ onProductClick(product: any): void {
     this.closeMenu();
     this.showLoading();
     this.router.navigate(['/products']).finally(() => this.hideLoading());
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   
     
   }
@@ -107,13 +109,27 @@ onProductClick(product: any): void {
     this.closeMenu();
     this.showLoading();
     this.router.navigate(['/carrer']).finally(() => this.hideLoading());
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+  splitIntoTwoWordLines(name: string): string[] {
+    if (!name) return [];
+    const words = name.split(' ');
+    const lines = [];
+    for (let i = 0; i < words.length; i += 4) {
+      lines.push(words.slice(i, i + 4).join(' '));
+    }
+    return lines;
+  }
+  
   navigateTohome(): void {
     this.closeMenu(); // Close the menu
    
     this.showLoading();
     
     this.router.navigate(['/']).finally(() => this.hideLoading());
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   
@@ -123,24 +139,32 @@ onProductClick(product: any): void {
    
     this.showLoading();
     this.router.navigate(['/Aboutus']).finally(() => this.hideLoading());
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   navigateTocontact(): void {
     this.closeMenu();
     this.showLoading();
     this.router.navigate(['/Contact']).finally(() => this.hideLoading());
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   navigateTocontactus(): void {
     this.closeMenu();
     this.showLoading();
     this.router.navigate(['/Contactus']).finally(() => this.hideLoading());
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   navigateTowhatwedo(): void {
     this.closeMenu();
     this.showLoading();
     this.router.navigate(['/What-we-do']).finally(() => this.hideLoading());
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   private showLoading(): void {

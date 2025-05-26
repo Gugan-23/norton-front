@@ -1,6 +1,4 @@
 
-<!-- Header Section -->
-<!-- Home Component -->
 <div *ngIf="loading" class="loading-container">
   <div class="loader">
     <div class="loader__bar"></div>
@@ -18,7 +16,6 @@
  
 </div>
 
-<!-- Hero Section -->
 <div *ngIf="!loading">
 
   <section class="hero">
@@ -30,9 +27,8 @@
         Smart Pumping Solutions | IoT Monitoring Systems | Manuals & More
       </div>
       <div class="hero-buttons">
-        <a href="#" class="btn-primary">Contact Us</a>
-        <a href="#" class="btn-secondary">Why AquaFlow</a>
-      </div>
+        <a href="/Contactus" class="btn-primary">Contact Us</a>
+        </div>
     </div>
     <div class="hero-image">
       <img src="home.png" alt="Uploaded Image">
@@ -40,8 +36,6 @@
       
     </div>
   </section>
-
-<!-- About Us Section -->
 
 <div id="about-us" class="about-us-section">
   <div class="about-us-content">
@@ -53,16 +47,35 @@
       <div class="about-label">ABOUT US</div>
       <div>
       <p>
-        Norton Industries, established in 1980 and headquartered in Ondipudur, Coimbatore, is a prominent Indian manufacturer and exporter specializing in pumps, motors, and control panels. Founded by engineering graduate Mr. N. Subramanian, the company initially focused on producing pumps for agricultural and domestic applications, as well as motors for industrial use. Over the years, Norton Industries has expanded its operations to include a cast iron foundry, Norton Ferro Castings, and a plastics division, Clear Plast, which manufactures PET preforms, bottles, and jars.
+        We Surya Pumps group of companies laid our first foot in to pump manufacturing business in 1979 founded by an engineering graduate Mr.N.Subramanian from Coimbatore, Tamilnadu, India. Our parent company (Surya pumps) starts manufacturing pumps for agriculture, domestic sectors and motors for industrial sectors.
+
+ 
       </p>
     </div>
-      <a href="https://www.cit.edu.in/club/datalytics-club" class="btn-read-more">Read more</a>
+      <a href="/Aboutus" class="btn-read-more">Read more</a>
     </div>
   </div>
 </div>
 
+<div class="h">
+  <h1 id="hj">Our Products</h1>
+<div class="category-container">
+  
+  <div 
+    *ngFor="let category of categories" 
+    class="category-card"
+    (click)="goToCategory(category)"
+  >
+    <h3>{{ category }}</h3>
+    <img 
+      [src]="categoryImages[category] || 'assets/default-image.jpg'" 
+      alt="{{ category }} image" 
+    />
+  </div>
+</div>
 
-<!-- What We Do Section -->
+</div>
+
 <div id="what-we-do" class="what-we-do-section">
   <h2>What Skills Do We Value?</h2>
   <div class="skills-label">ENGINEERING & MANUFACTURING</div>
@@ -108,7 +121,25 @@
 </div>
 
 
-<!-- Events Section -->
+<div class="customer">
+    <div class="hero-text" style="flex: 1;">
+      <h1>About Our Customer</h1>
+      <p>At Surya Pumps, Coimbatore, we place immense value on every customer visit—not just as a meeting, but as a meaningful interaction that strengthens our commitment to excellence. When customers walk through our doors, they’re welcomed not as outsiders, but as partners. Each visit is tailored to help them understand our processes, inspect our products, and get a firsthand look at the quality and integrity that define our work.
+
+Our team takes the time to walk customers through each stage of manufacturing, quality control, and logistics, addressing every question with transparency and genuine care. Whether it’s a first-time visitor or a long-standing client, we ensure their experience is both informative and personalized. These visits often go beyond business—they’re about trust-building, sharing ideas, and aligning our goals for long-term collaboration.
+        
+      </p>
+    </div>
+    <div class="hero-image" style="flex: 1;">
+      <img [src]="imgcustomer" alt="customer" style="max-width: 100%; border-radius: 8px;">
+    </div>
+ 
+
+</div>
+
+
+
+
 <div class="info-panel">
   <div class="info-left">
     <div class="tag-line">EXCELLENCE</div>
@@ -116,7 +147,7 @@
     <p class="panel-description">
       Our mission is to design and deliver smart solutions that meet global standards. By combining efficiency, sustainability, and precision, we ensure that our customers receive nothing but the best in class products. Our teams constantly innovate to create value and growth opportunities within every sector we serve.
     </p>
-    <a href="#" class="learn-more-button">Learn More »</a>
+    <a href="/Aboutus" class="learn-more-button">Learn More »</a>
   </div>
 
   <div class="info-right">
@@ -143,64 +174,18 @@
     </div>
   </div>
 </div>
-
-<div class="customer">
-    <div class="hero-text" style="flex: 1;">
-      <h1>About Our Customer</h1>
-      <p>At Surya Pumps, Coimbatore, we place immense value on every customer visit—not just as a meeting, but as a meaningful interaction that strengthens our commitment to excellence. When customers walk through our doors, they’re welcomed not as outsiders, but as partners. Each visit is tailored to help them understand our processes, inspect our products, and get a firsthand look at the quality and integrity that define our work.
-
-Our team takes the time to walk customers through each stage of manufacturing, quality control, and logistics, addressing every question with transparency and genuine care. Whether it’s a first-time visitor or a long-standing client, we ensure their experience is both informative and personalized. These visits often go beyond business—they’re about trust-building, sharing ideas, and aligning our goals for long-term collaboration.
-        
-      </p>
-    </div>
-    <div class="hero-image" style="flex: 1;">
-      <img [src]="imgcustomer" alt="customer" style="max-width: 100%; border-radius: 8px;">
-    </div>
- 
-
-</div>
-<!-- Team Section -->
-<div id="team" class="team-section">
-  <h2>Meet Our Team</h2>
-  <div class="slider">
-    <div
-      class="slider-container"
-      [style.transform]="sliderTransform"
-      [style.transition]="'transform 0.5s ease-in-out'"
-    >
-      <div class="team-card" *ngFor="let member of team" (click)="navigateToUserDetail(member._id)">
-        <ng-container *ngIf="member.image_url; else altText">
-          <img
-            [src]="member.image_url"
-            alt="{{ member.name }}"
-            class="user-img"
-          />
-        </ng-container>
-        <ng-template #altText>
-          <div class="placeholder-img">No Image</div>
-        </ng-template>
-        <div class="member-info">
-          <p>{{ member.name }}</p>
-          <p>{{ member.email }}</p>
-        </div>
-      </div>
-    </div>
-    <button class="slider-btn left" (click)="prevSlide()">‹</button>
-    <button class="slider-btn right" (click)="nextSlide()">›</button>
-  </div>
-  <a href="javascript:void(0)" class="btn btn-secondary" (click)="goToMembersPage()">View All Team Members</a>
-</div>
-
-
-<!-- Contact Us Section -->
 <div id="contact-us" class="contact-us-section">
   <h2>Contact Us</h2>
-  <p>
-    Email: <a href="contact&#64;nortongroup.co.in">contact&#64;nortongroup.co.in</a> | 
-    Phone: <a href="tel:+91 9894699933">+91 9894699933</a> | 
-    LinkedIn: <a href="https://www.linkedin.com/company/the-norton-group-1969?originalSubdomain=ie" target="_blank">Norton Group</a> | 
-    Instagram: <a href="https://www.instagram.com/norton_group/" target="_blank">&#64;norton_group</a>
-  </p>
+  <div class="contact-info">
+    <span>Email: <a href="mailto:contact@nortongroup.co.in">contact&#64;nortongroup.co.in</a></span>
+    <span>|</span>
+    <span>Phone: <a href="tel:+919894699933">+91 9894699933</a></span>
+    <span>|</span>
+    <span>LinkedIn: <a href="https://www.linkedin.com/company/the-norton-group-1969?originalSubdomain=ie" target="_blank">Norton Group</a></span>
+    <span>|</span>
+    <span>Instagram: <a href="https://www.instagram.com/norton_group/" target="_blank">&#64;norton_group</a></span>
+  </div>
 </div>
+
 
 </div>

@@ -42,6 +42,12 @@ interface UserRoleApiResponse {
   userRoles: User[];
 }
 
+interface Product {
+  _id: string;
+  name: string;
+  category: string;
+}
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -61,12 +67,14 @@ export class HomeComponent implements OnInit {
   selectedEvent: any = null; // Store the currently selected event for editing
   yearRanges: string[] = [];
   imgcustomer:string ='https://res.cloudinary.com/do7fzq9c6/image/upload/v1747915367/bxyh37ar1dqhj6zpzvm0.png'
- 
+  categoryImage: string | null = null;
+
   selectedYearRange: string = '';
   recentYearRange: string = '';
   users: User[] = [];
   roles: Role[] = [];
   errorMessage?: string;
+  categories: string[] = [];
   categorizedUsers: { [year: string]: { hidden: boolean } } = {}; // Track visibility for each year range
   currentSlide: number = 0;  // Track the current slide
   sliderInterval: any;  // Store the setInterval reference
@@ -76,7 +84,10 @@ export class HomeComponent implements OnInit {
   selectedYear: string = ''; // Selected year from the dropdown
   years: number[] = [];
   loading: boolean = true; // Set this to true/false based on your application's logic
-
+  activeCategory: string | null = null;
+  
+  
+ productsByCategory: { [category: string]: Product[] } = {};
 
   contactForm = {
     name: '',
@@ -89,11 +100,13 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.loading = false; // Set loading to false after initialization
-    }, 5000);
+    }, 2000);
      // Fetch events when the component is initialized
     this.fetchTeam(); 
-    this.startAutomaticSlide();  // Fetch userRoles when the component is initialized
+    this.startAutomaticSlide(); 
+    this.fetchCategories(); // Fetch userRoles when the component is initialized
   }
+
 cardWidth: number = 15;
 ngOnDestroy(): void {
   if (this.sliderInterval) {
@@ -103,15 +116,87 @@ ngOnDestroy(): void {
 startAutomaticSlide(): void {
   this.sliderInterval = setInterval(() => {
     this.nextSlide();  // Move to the next slide every 3 seconds
-  }, 5000);  // Adjust the interval as needed
+  }, 2000);  // Adjust the interval as needed
 }
 
+categoryImages: { [category: string]: string } = {}; // to store image URL for each category
+
+fetchCategories(): void {
+  this.http.get<string[]>('http://localhost:5000/categories').subscribe({
+    next: (categories) => {
+      this.categories = categories;
+      categories.forEach(category => {
+        this.fetchProductImageForCategory(category);  // Make sure it's running for each
+        console.log('Fetching for category:', category);
+      });
+    },
+    error: (err) => console.error('Error fetching categories:', err)
+  });
+}
+fetchProductImageForCategory(category: string): void {
+  this.http.get<any[]>(`http://localhost:5000/products1?category=${category}`).subscribe({
+    next: (products) => {
+      const productWithImage = products.find(prod => prod.images && prod.images.length > 0);
+      if (productWithImage) {
+        this.categoryImages[category] = productWithImage.images[0];
+        console.log(`✅ [${category}] image set to:`, productWithImage.images[0]);
+      } else {
+        this.categoryImages[category] = 'assets/default-image.jpg';
+        console.log(`❌ [${category}] has no image, using default`);
+      }
+    },
+    error: (err) => {
+      console.error(`❌ Error fetching for [${category}]`, err);
+      this.categoryImages[category] = 'assets/default-image.jpg';
+    }
+  });
+}
+
+
+
+
+goToCategory(category: string): void {
+  this.router.navigate(['/products'], { queryParams: { category } });
+  
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 // Stop the automatic movement when the user clicks the previous/next button
 stopAutomaticSlide(): void {
   if (this.sliderInterval) {
     clearInterval(this.sliderInterval);  // Clear the interval
     this.sliderInterval = null;
   }
+}
+fetchProductsByCategory(category: string): void {
+  this.activeCategory = category;
+  if (this.productsByCategory[category]) return;
+
+  this.http.get<any[]>('http://localhost:5000/products').subscribe({
+    next: (products) => {
+      const filteredProducts = products.filter(p => p.category === category);
+      this.productsByCategory[category] = filteredProducts;
+
+      console.log('Filtered Products:', filteredProducts);
+
+      if (filteredProducts.length > 0) {
+        const productWithImages = filteredProducts.find(p => p.images && p.images.length > 0);
+        if (productWithImages) {
+          console.log('Found product with images:', productWithImages);
+          this.categoryImage = productWithImages.images[0];
+        } else {
+          console.log('No images found in filtered products');
+          this.categoryImage = null;
+        }
+      } else {
+        console.log('No products found for category:', category);
+        this.categoryImage = null;
+      }
+    },
+    error: (err) => {
+      console.error('Error fetching products:', err);
+      this.categoryImage = null;
+    }
+  });
 }
 
 // Move to the previous slide with looping

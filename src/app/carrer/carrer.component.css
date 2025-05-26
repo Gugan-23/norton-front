@@ -1,4 +1,21 @@
 /* Container for the entire career section */
+
+.body12 {
+  background: repeating-linear-gradient(
+    135deg,
+    #e6f4fb,
+    #e6f4fb 10px,
+    #d2ebf8 10px,
+    #d2ebf8 20px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 40px;
+  color: #002244;
+  font-family: Arial, sans-serif;
+  flex-wrap: wrap;
+}
 .career-container {
     max-width: 700px;
     margin: 40px auto;
