@@ -29,7 +29,7 @@ export class ProductsfetchComponent implements OnInit {
   }
 
   fetchProducts() {
-    this.http.get<any[]>('http://localhost:5000/products')
+    this.http.get<any[]>('https://backend45-p3hk.onrender.com/products')
       .subscribe({
         next: (res) => {
           this.products = res;
@@ -73,7 +73,7 @@ export class ProductsfetchComponent implements OnInit {
     this.router.navigate([`/viewproduct/${product._id}`]);
   }
   getProducts() {
-    this.http.get<any[]>('http://localhost:5000/products').subscribe(
+    this.http.get<any[]>('https://backend45-p3hk.onrender.com/products').subscribe(
       data => {
         this.products = data;
       },
@@ -89,7 +89,7 @@ export class ProductsfetchComponent implements OnInit {
     const query = this.searchQuery.trim();
   
     if (query) {
-      this.http.get<any[]>(`http://localhost:5000/products?search=${query}`).subscribe(
+      this.http.get<any[]>(`https://backend45-p3hk.onrender.com/products?search=${query}`).subscribe(
         data => {
           this.products = data;
         },

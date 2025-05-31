@@ -122,7 +122,7 @@ startAutomaticSlide(): void {
 categoryImages: { [category: string]: string } = {}; // to store image URL for each category
 
 fetchCategories(): void {
-  this.http.get<string[]>('http://localhost:5000/categories').subscribe({
+  this.http.get<string[]>('https://backend45-p3hk.onrender.com/categories').subscribe({
     next: (categories) => {
       this.categories = categories;
       categories.forEach(category => {
@@ -134,7 +134,7 @@ fetchCategories(): void {
   });
 }
 fetchProductImageForCategory(category: string): void {
-  this.http.get<any[]>(`http://localhost:5000/products1?category=${category}`).subscribe({
+  this.http.get<any[]>(`https://backend45-p3hk.onrender.com/products1?category=${category}`).subscribe({
     next: (products) => {
       const productWithImage = products.find(prod => prod.images && prod.images.length > 0);
       if (productWithImage) {
@@ -171,7 +171,7 @@ fetchProductsByCategory(category: string): void {
   this.activeCategory = category;
   if (this.productsByCategory[category]) return;
 
-  this.http.get<any[]>('http://localhost:5000/products').subscribe({
+  this.http.get<any[]>('https://backend45-p3hk.onrender.com/products').subscribe({
     next: (products) => {
       const filteredProducts = products.filter(p => p.category === category);
       this.productsByCategory[category] = filteredProducts;
@@ -225,7 +225,7 @@ updateSliderTransform(): void {
 
 
 fetchRoles(): void {
-  const apiUrl = 'http://localhost:5000/api/getRoles';
+  const apiUrl = 'https://backend45-p3hk.onrender.com/api/getRoles';
   this.http.get<{ message: string; roles: Role[] }>(apiUrl).subscribe({
     next: (data) => {
       this.roles = data.roles.sort((a, b) => a.rank - b.rank); // Sort roles by rank
@@ -248,7 +248,7 @@ sortUsersByRoleRank(users: User[]): User[] {
   });
 }
 fetchYearRanges(): void {
-  const apiUrl = 'http://localhost:5000/api/yearRanges';
+  const apiUrl = 'https://backend45-p3hk.onrender.com/api/yearRanges';
   this.http.get<{ message: string; yearRanges: string[] }>(apiUrl).subscribe({
     next: (data) => {
       this.yearRanges = data.yearRanges;
@@ -264,7 +264,7 @@ fetchYearRanges(): void {
 }
 
 fetchHiddenYears(): void {
-  const apiUrl = 'http://localhost:5000/api/userRoles/hiddenYears';
+  const apiUrl = 'https://backend45-p3hk.onrender.com/api/userRoles/hiddenYears';
   this.http.get<HiddenYear[]>(apiUrl).subscribe({
     next: (hiddenYears) => {
       hiddenYears.forEach(hiddenYear => {
@@ -304,7 +304,7 @@ onYearRangeChange(): void {
     return;
   }
 
-  const apiUrl = `http://localhost:5000/api/userRoles1?createdAt=${this.selectedYearRange}`;
+  const apiUrl = `https://backend45-p3hk.onrender.com/api/userRoles1?createdAt=${this.selectedYearRange}`;
   this.http.get<{ message: string; users: User[] }>(apiUrl).subscribe({
     next: (data) => {
       this.users = this.sortUsersByRoleRank(data.users);
@@ -349,8 +349,8 @@ viewEventDetails(eventId: string): void {
   }
 
   fetchTeam(): void {
-    const yearRangesApiUrl = 'http://localhost:5000/api/yearRanges'; // API to fetch year ranges
-    const teamApiUrl = 'http://localhost:5000/api/userRoles'; // API to fetch user roles
+    const yearRangesApiUrl = 'https://backend45-p3hk.onrender.com/api/yearRanges'; // API to fetch year ranges
+    const teamApiUrl = 'https://backend45-p3hk.onrender.com/api/userRoles'; // API to fetch user roles
   
     // Step 1: Fetch year ranges
     this.http.get<{ message: string; yearRanges: string[] }>(yearRangesApiUrl).subscribe({

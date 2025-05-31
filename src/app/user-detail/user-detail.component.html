@@ -8,11 +8,6 @@
     <div class="loader__ball"></div>
   </div>
 
-  
-
-
-  
- 
 </div>
 <div *ngIf="!loading">
 <div *ngIf="errorMessage" class="error-message">
@@ -41,7 +36,7 @@
       <strong>Department:</strong> {{ userDetails.department }}
     </p>
     <div id="linkedin-button-container">
-      <!-- Smaller Image Button -->
+      
       <a [href]="userDetails.linkedinlink" target="_blank" id="linkedin-link">
         <button id="linkedin-button">
           <img src="download.png" alt="LinkedIn Button" id="linkedin-image" />

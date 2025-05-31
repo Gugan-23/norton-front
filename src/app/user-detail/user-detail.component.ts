@@ -14,15 +14,14 @@ export class UserDetailComponent implements OnInit {
   userId: string | null = null;
   userDetails: any = null;
   errorMessage: string | null = null;
-  loading: boolean = true; // Set this to true/false based on your application's logic
+  loading: boolean = true;
 
 
   constructor(private route: ActivatedRoute, private http: HttpClient) {}
 
   ngOnInit(): void {
-    // Get the user ID from the URL parameters
     setTimeout(() => {
-      this.loading = false; // Set loading to false after initialization
+      this.loading = false;
     }, 2000);
     this.userId = this.route.snapshot.paramMap.get('id');
     console.log('User ID:', this.userId);
@@ -34,15 +33,13 @@ export class UserDetailComponent implements OnInit {
     }
   }
 
-  // Fetch user details by calling the backend API
   fetchUserDetails(userId: string): void {
-    const apiUrl = `http://localhost:5000/api/userRoles?_id=${userId}`;
+    const apiUrl = `https://backend45-p3hk.onrender.com/api/userRoles?_id=${userId}`;
   
     this.http.get<any>(apiUrl).subscribe({
       next: (response) => {
         console.log('API Response:', response);
   
-        // Find the user in the userRoles array
         const user = response.userRoles.find((u: any) => u._id === userId);
   
         if (user) {

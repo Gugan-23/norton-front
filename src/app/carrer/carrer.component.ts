@@ -50,7 +50,7 @@ export class CarrerComponent {
     formData.append('state', this.careerForm.value.state);
     formData.append('resume', this.resumeFile);
 
-    this.http.post<any>('http://localhost:5000/career', formData).subscribe({
+    this.http.post<any>('https://backend45-p3hk.onrender.com/career', formData).subscribe({
       next: (res) => {
         this.submitSuccess = true;
         this.submitError = null;

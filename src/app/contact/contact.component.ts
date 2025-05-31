@@ -26,7 +26,7 @@ export class ContactComponent {
 
   async onSubmit() {
     if (this.contactForm.valid) {
-      this.http.post<any>('http://localhost:5000/send', this.contactForm.value)
+      this.http.post<any>('https://backend45-p3hk.onrender.com/send', this.contactForm.value)
         .subscribe(
           (response) => {
             console.log('Success Response:', response);

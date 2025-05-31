@@ -17,11 +17,10 @@ interface Product {
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  isDarkMode: boolean = false; // Variable to track the dark mode status
+  isDarkMode: boolean = false; 
   isLoading: boolean = false;
-  menuActive: boolean = false; // Declare the property
- // Variable to track the loading state
- loading: boolean = true; // Set this to true/false based on your application's logic
+  menuActive: boolean = false; 
+ loading: boolean = true;
 activeCategory: string | null = null;
  categories: string[] = [];
  
@@ -29,11 +28,10 @@ activeCategory: string | null = null;
 productsByCategory: { [category: string]: Product[] } = {};
  showDropdown = false;
 
- constructor(private router: Router, private http: HttpClient) {}  // ✅ FIXED
- 
+ constructor(private router: Router, private http: HttpClient) {} 
  fetchCategories(): void {
   this.showDropdown = true;
-  this.http.get<string[]>('http://localhost:5000/categories').subscribe({
+  this.http.get<string[]>('https://backend45-p3hk.onrender.com/categories').subscribe({
     next: (data) => this.categories = data,
     error: (err) => console.error('Error fetching categories:', err)
   });
@@ -43,17 +41,13 @@ fetchProductsByCategory(category: string): void {
   this.activeCategory = category;
   if (this.productsByCategory[category]) return;
 
-  this.http.get<any[]>('http://localhost:5000/products').subscribe({
+  this.http.get<any[]>('https://backend45-p3hk.onrender.com/products').subscribe({
     next: (products) => {
-      // Store all product fields including _id
       this.productsByCategory[category] = products.filter(p => p.category === category);
     },
     error: (err) => console.error('Error fetching products:', err)
   });
 }
-
-
-
 
 hideDropdown(): void {
   this.showDropdown = false;
@@ -65,14 +59,9 @@ onProductClick(product: any): void {
   window.location.href = `/viewproduct/${product._id}`;
 }
 
-
-
-
-
-
   ngOnInit(): void {
     setTimeout(() => {
-      this.loading = false; // Set loading to false after initialization
+      this.loading = false; 
     }, 2000);
     if (typeof window !== 'undefined') {
       const darkModePreference = localStorage.getItem('darkMode');
@@ -91,7 +80,7 @@ onProductClick(product: any): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
   closeMenu() {
-    this.isMenuOpen = false; // Ensure menu is hidden
+    this.isMenuOpen = false; 
   }
 
   
@@ -123,7 +112,7 @@ onProductClick(product: any): void {
   }
   
   navigateTohome(): void {
-    this.closeMenu(); // Close the menu
+    this.closeMenu();
    
     this.showLoading();
     
@@ -135,7 +124,7 @@ onProductClick(product: any): void {
   
 
   navigateToaboutus(): void {
-    this.closeMenu(); // Close the menu
+    this.closeMenu(); 
    
     this.showLoading();
     this.router.navigate(['/Aboutus']).finally(() => this.hideLoading());
@@ -168,19 +157,19 @@ onProductClick(product: any): void {
   }
 
   private showLoading(): void {
-    this.isLoading = true; // Set isLoading to true
+    this.isLoading = true; 
     console.log('Loading started');
   }
 
   private hideLoading(): void {
-    this.isLoading = false; // Set isLoading to false
+    this.isLoading = false;
     console.log('Loading finished');
   }
   @HostListener('document:click', ['$event'])
   handleOutsideClick(event: Event) {
     const target = event.target as HTMLElement;
     if (!target.closest('#mobile-menu')) {
-      this.closeMenu(); // Close menu if click is outside the menu
+      this.closeMenu(); 
     }
   }
 }

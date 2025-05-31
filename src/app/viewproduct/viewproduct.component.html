@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
 <div *ngIf="loading" class="loading">Loading product details...</div>
 
 <div *ngIf="error" class="error">{{ error }}</div>
@@ -17,7 +19,7 @@
     <div class="main-image-container">
       <img [src]="selectedImage" alt="{{ product.name }}" class="main-image" />
     </div>
-
+    
     <!-- Thumbnail Carousel -->
     <div *ngIf="product.images?.length > 1" class="thumbnail-carousel">
       <div class="carousel-wrapper">

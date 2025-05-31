@@ -31,20 +31,29 @@ export class ViewproductComponent implements OnInit {
   }
 
   scrollCarousel(direction: 'left' | 'right') {
-    const container = this.carousel.nativeElement;
-    const scrollAmount = 300;
-    container.scrollBy({
-      left: direction === 'right' ? scrollAmount : -scrollAmount,
-      behavior: 'smooth'
-    });
+    const currentIndex = this.product.images.findIndex((img: string) => img === this.selectedImage);
+    const lastIndex = this.product.images.length - 1;
+  
+    if (direction === 'left') {
+      // If at first image, go to last, else go previous
+      this.selectedImage = currentIndex === 0
+        ? this.product.images[lastIndex]
+        : this.product.images[currentIndex - 1];
+    } else if (direction === 'right') {
+      // If at last image, go to first, else go next
+      this.selectedImage = currentIndex === lastIndex
+        ? this.product.images[0]
+        : this.product.images[currentIndex + 1];
+    }
   }
-
+  
+  
   selectImage(imgUrl: string) {
     this.selectedImage = imgUrl;
   }
 
   fetchProductDetails(id: string): void {
-    this.http.get<any>(`http://localhost:5000/products/${id}`).subscribe({
+    this.http.get<any>(`https://backend45-p3hk.onrender.com/products/${id}`).subscribe({
       next: (data) => {
         this.product = data;
         this.selectedImage = data.images?.[0] || '';

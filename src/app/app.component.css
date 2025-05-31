@@ -110,7 +110,7 @@
 .dropdown-menu {
   position: absolute;
   background: white;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   padding: 10px;
   z-index: 999;
   border-radius: 8px;
@@ -1384,4 +1384,29 @@ a:hover {
   width: 100%;
   height: 100%;
   object-fit: contain;  /* Maintain aspect ratio */
+}
+
+@media (max-width: 768px) {
+  /* White background for the nav list */
+  .nav-list {
+    background-color: white !important;
+    color: black !important;
+  }
+
+  /* Make all text inside nav-list black with shadow */
+  .nav-list a,
+  .nav-list b,
+  .nav-list strong,
+  .nav-list li {
+    color: black !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
+
+  /* Dropdown menus also white background and black text with shadow */
+  .ni-dropdown-menu,
+  .ni-dropdown-submenu {
+    background-color: white !important;
+    color: black !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  }
 }
