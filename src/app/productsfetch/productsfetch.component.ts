@@ -17,16 +17,30 @@ export class ProductsfetchComponent implements OnInit {
   products: any[] = [];
   groupedProducts: { [key: string]: any[] } = {};
   
-  categoryOrder = ['HOME PUMPS', 'AGRICULTURE', 'ACCESSORIES', 'WASTE WATER PUMPS'];
-  
+  categoryOrder: string[] = [];
+
   searchQuery = '';
   filteredProducts: any[] = [];
 
   constructor(private http: HttpClient,private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.fetchCategories()
     this.fetchProducts();
   }
+  
+fetchCategories(): void {
+  this.http.get<string[]>('https://backend45-p3hk.onrender.com/categories').subscribe({
+    next: (data) => {
+      this.categoryOrder = data;
+      
+    console.log(this.categoryOrder);
+    },
+    error: (err) => {
+      console.error('Failed to load categories', err);
+    }
+  });
+}
 
   fetchProducts() {
     this.http.get<any[]>('https://backend45-p3hk.onrender.com/products')
@@ -59,14 +73,15 @@ export class ProductsfetchComponent implements OnInit {
 
   private groupByCategory(products: any[]): { [key: string]: any[] } {
     return products.reduce((acc, product) => {
-      const category = product.category.toUpperCase();
+      const category = product.category; // Keep it consistent with fetched categoryOrder
       if (!acc[category]) {
         acc[category] = [];
       }
       acc[category].push(product);
       return acc;
-    }, {});
+    }, {} as { [key: string]: any[] });
   }
+  
   
   onProductClick(product: any): void {
     console.log('Product clicked:', product);
